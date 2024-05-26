@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Recommendations</title>
+  </head>
+  <body>
+    <h1>Recommendations</h1>
+    <h2>FastText Recommendations</h2>
+    <ul>
+      {% for filename, similarity in fasttext_recommendations %}
+        <li>{{ filename }} - Similarity: {{ similarity }}</li>
+      {% endfor %}
+    </ul>
+
+    <h2>SciBERT Recommendations</h2>
+    <ul>
+      {% for filename, similarity in scibert_recommendations %}
+        <li>{{ filename }} - Similarity: {{ similarity }}</li>
+      {% endfor %}
+    </ul>
+
+    <h1>Give Feedback</h1>
+    <form action="/feedback" method="post">
+      <input type="text" name="liked_ids" placeholder="Enter liked article IDs separated by commas">
+      <button type="submit">Submit Feedback</button>
+    </form>
+  </body>
+</html>

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}ANA SAYFA{% endblock title %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='anasayfa.css') }}">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <div class="topnav">
+        <a href="{{ url_for('anasayfa') }}">Ana Sayfa</a>
+        <a href="{{ url_for('gecmis_okumalar') }}">GEÇMİŞ OKUMALARIM</a>
+        <a href="/profile_page/{{ user_id }}">Profil</a>
+        <form action="/search" method="GET">
+          <input type="text" name="query" placeholder="Search..">
+          <button type="submit">Search</button>
+      </form>
+      </div>
+
+    {% block content %}{% endblock content %}
+</body>
+</html>

@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Feedback Recommendations</title>
+  </head>
+  <body>
+    <h1>Feedback Recommendations</h1>
+    <h2>FastText Feedback Recommendations</h2>
+    <ul>
+      {% for filename, similarity in fasttext_feedback_recommendations %}
+        <li>{{ filename }} - Similarity: {{ similarity }}</li>
+      {% endfor %}
+    </ul>
+
+    <h2>SciBERT Feedback Recommendations</h2>
+    <ul>
+      {% for filename, similarity in scibert_feedback_recommendations %}
+        <li>{{ filename }} - Similarity: {{ similarity }}</li>
+      {% endfor %}
+    </ul>
+  </body>
+</html>

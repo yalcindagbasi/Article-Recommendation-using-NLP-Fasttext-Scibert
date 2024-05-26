@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up / Sign In</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='home_page.css') }}">
+    <!-- Font Awesome CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body>
+
+<div class="container" id="container">
+    <div class="form-container sign-up-container">
+        <form action="/signup" method="post">
+            <h1>KAYIT OL</h1>
+            
+            <span></span>
+            <input type="text" name="ad" placeholder="Ad" />
+            <input type ="text" name = "soyad" placeholder="Soyad"/>
+            <input type="email" name="mail" placeholder="Email Adresi "/>
+            <input type="password" name="sifre" placeholder="Şifre" />
+            <button type="submit">KAYIT OL</button>
+        </form>
+    </div>
+    <div class="form-container sign-in-container">
+        <form action="/login" method="post">
+            <h1>GİRİŞ YAP</h1>
+            <div class="social-container">
+                <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
+                <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+            <span></span>
+            <input type="email" name ="mail" placeholder="Email" />
+            <input type="password" name ="sifre" placeholder="Password" />
+            
+            <button>GİRİŞ YAP</button>
+        </form>
+    </div>
+    <div class="overlay-container">
+        <div class="overlay">
+            <div class="overlay-panel overlay-left">
+                <h1>GİRİŞ YAP</h1>
+                <br>
+
+                <button class="ghost" id="signIn">GİRİŞ YAP</button>
+            </div>
+            <div class="overlay-panel overlay-right">
+                
+                <p>KAYIT OLARAK BİZLERE KATIL</p>
+                <button class="ghost" id="signUp">KAYIT OL</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script>
+    const signUpButton = document.getElementById('signUp');
+    const signInButton = document.getElementById('signIn');
+    const container = document.getElementById('container');
+
+    signUpButton.addEventListener('click', () => {
+        container.classList.add("right-panel-active");
+    });
+
+    signInButton.addEventListener('click', () => {
+        container.classList.remove("right-panel-active");
+    });
+</script>
+
+</body>
+</html>

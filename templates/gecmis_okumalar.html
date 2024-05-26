@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{% block title %} OKUNAN MAKALELER {% endblock title %}></title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='gecmis_okumalar.css') }}">
+</head>
+{% extends "index.html" %}
+<body>
+    {%block content1 %}
+    <div class="container">
+        <h1>OKUNAN MAKALELER</h1>
+        <ul>
+            {% for veri in makale %}
+                <li>
+                    <div class="box">
+                        TİTLE : {{  veri[2] }} <br><br> {{ veri[1] }} <br><br><br>
+                    </div>
+                </li>
+                {% endfor %}
+        </ul>
+    </div>
+{%endblock content1 %}
+</body>
+</html>

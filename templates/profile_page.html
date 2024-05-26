@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CodingDung | Profile Template</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='profile_page.css') }}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+{% extends "index.html" %}
+
+{% block title %}
+<h2>Profile Page</h2>
+{% endblock %}
+
+{% block content1 %}
+<body>
+    <div class="container light-style flex-grow-1 container-p-y">
+        <h4 class="font-weight-bold py-3 mb-4"></h4>
+        <form action="/degistir" method="post">
+            <div class="card overflow-hidden">
+                <div class="row no-gutters row-bordered row-border-light">
+                    <div class="col-md-3 pt-0">
+                        <div class="list-group list-group-flush account-settings-links">
+                            <a class="list-group-item list-group-item-action active" data-toggle="list"
+                               href="#account-general">GENEL</a>
+                            <a class="list-group-item list-group-item-action" data-toggle="list"
+                               href="#account-change-password">ŞİFRE DEĞİŞTİR</a>
+                            <a class="list-group-item list-group-item-action" data-toggle="list"
+                               href="#account-info">BİLGİ</a>
+                            <a class="list-group-item list-group-item-action" data-toggle="list"
+                               href="#ilgi-info">İLGİ ALANI</a>
+                        </div>
+                    </div>
+                    <div class="col-md-9">
+                        <div class="tab-content">
+                            <div class="tab-pane fade active show" id="account-general">
+                                <div class="card-body media align-items-center">
+                                    <img src="https://bootdey.com/img/Content/avatar/avatar1.png" alt class="d-block ui-w-80">
+                                    <div class="media-body ml-4">
+                                        <label class="btn btn-outline-primary">
+                                            Yeni Fotoğraf Yükle
+                                            <input type="file" class="account-settings-fileinput">
+                                        </label> &nbsp;
+                                        <button type="button" class="btn btn-default md-btn-flat">Reset</button>
+                                        <div class="text-light small mt-1">Allowed JPG, GIF or PNG. Max size of 800K</div>
+                                    </div>
+                                </div>
+                                <hr class="border-light m-0">
+                                <div class="card-body">
+                                    <div class="form-group">
+                                        <label class="form-label">AD</label>
+                                        <input type="text" class="form-control mb-1" name="ad" value="{{ user.ad }}">
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="form-label">SOYAD</label>
+                                        <input type="text" class="form-control" name="soyad" value="{{ user.soyad }}">
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="form-label">E-mail</label>
+                                        <input type="text" class="form-control mb-1" name="email" value="{{ user.email }}">
+                                        
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="form-label">YAŞ</label>
+                                        <input type="text" name="age" class="form-control" value="{{ user.age }}">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tab-pane fade" id="account-change-password">
+                                <div class="card-body pb-2">
+                                    <div class="form-group">
+                                        <label class="form-label">Güncel Şifre</label>
+                                        <input type="password" name="currpass" class="form-control">
+                                    </div>     
+                                    <div class="form-group">
+                                        <label class="form-label">Yeni Şifre</label>
+                                        <input type="password" name="newpass" class="form-control">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tab-pane fade" id="account-info">
+                                <div class="card-body pb-2">
+                                    <div class="form-group">
+                                        <label class="form-label">Hakkında</label>
+                                        <textarea class="form-control" name ="about" rows="5" value ="{{user.hakkında}}"></textarea>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="form-label">Doğum Tarihi</label>
+                                        <input type="text" class="form-control" name="dogum" value="{{ user.dogum }}">
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="form-label">Ülke</label>
+                                        <select class="custom-select" name="country" value ="{{user.ulke}}">
+                                            <option>USA</option>
+                                            <option>Canada</option>
+                                            <option>UK</option>
+                                            <option>Germany</option>
+                                            <option>France</option>
+                                            <option>Türkiye</option>
+                                            <option selected>{{user.ulke}}</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <hr class="border-light m-0">
+                                <div class="card-body pb-2">
+                                    <h6 class="mb-4">İletişim</h6>
+                                    <div class="form-group">
+                                        <label class="form-label">Telefon</label>
+                                        <input type="text" class="form-control" name="telefon" value="{{ user.telefon }}">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tab-pane fade" id="ilgi-info">
+                                <div class="card-body pb-2">
+                                    <h6 class="mb-4">HESAP BİLGİLERİ</h6>
+                                    {% for user in users %}
+                                    <div class="form-group">
+                                        <label class="form-label">Ad</label>
+                                        <input type="text" class="form-control" value="{{ user.name }}" readonly>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="form-label">Doğum Tarihi</label>
+                                        <input type="text" class="form-control" name="dogum_{{ user.id }}" value="{{ user.dogum }}" readonly>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="form-label">Telefon</label>
+                                        <input type="text" class="form-control" name="telefon_{{ user.id }}" value="{{ user.telefon }}" readonly>
+                                    </div>
+                                    
+                                    
+                                    <hr class="border-light m-0">
+                                    {% endfor %}
+                                </div>
+                                <div class="form-group">
+                                    <div class="form-group">
+                                        <label class="form-label">İLGİ ALANLARI</label>
+                                        <ul>
+                                            {% for interest in user.ilgi_alanlari %}
+                                            <li>{{ interest }} 
+                                                <form action="/sil" method="post" class="delete-form">
+                                                    <input type="hidden" name="ilgialani" value="{{ interest }}">
+                                                    <button type="submit" class="btn btn-sm btn-danger">SİL</button>
+                                                </form>
+                                            </li>
+                                            {% endfor %}
+                                        </ul>
+                                        
+                                    </div>
+                                    
+                                    <label class="form-label">İLGİ ALANI EKLE</label>
+                                    <input type="text" class="form-control" name="yeni_ilgi">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="text-right mt-3">
+                    <button type="submit" class="btn btn-primary">KAYDET</button>&nbsp; <!-- Submit button -->
+                    <button type="button" class="btn btn-default">İPTAL</button>
+                </div>
+            </div>
+        </form> <!-- Form bitişi -->
+    </div>
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
+    <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script type="text/javascript">
+    </script>
+</body>
+{% endblock content1 %}
+</html>

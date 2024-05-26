@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up / Sign In</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <!-- Font Awesome CDN -->
+</head>
+<title> {% block title %}{% endblock title %}</title>
+<body>
+  <div class="topnav">
+    <a href="{{ url_for('anasayfa') }}">Ana Sayfa</a>
+    <a href="{{ url_for('gecmis_okumalar') }}">GEÇMİŞ OKUMALARIM</a>
+    <a href="/profile_page/{{ user_id }}">Profil</a>
+    <form action="/search" method="GET">
+      <input type="text" name="query" placeholder="Search..">
+      <button type="submit">Search</button>
+  </form>
+  </div>
+
+{% block content1 %}{% endblock content1 %}
+{% block content2 %}{% endblock content2 %}
+
+<script>
+    var user_id = "{{ user_id }}";
+    
+    console.log("user_id:", user_id);
+ 
+</script>
+
+</body>
+</html>

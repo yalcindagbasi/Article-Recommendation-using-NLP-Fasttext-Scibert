@@ -1,0 +1,72 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    width: 80%;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: white;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+.box {
+    border: 1px solid #ccc;
+    padding: 5px;
+    margin: 5px;
+    background-color: #f9f9f9;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+h1 {
+    text-align: center;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+li {
+    margin: 10px 0;
+}
+
+a {
+    text-decoration: none;
+    color: #333;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+.begen-button {
+    margin-left: 10px;
+    padding: 5px 10px;
+    background-color: #4fd966;
+    border: none;
+    color: white;
+    cursor: pointer;
+}
+
+.begen-button:hover {
+    background-color: #2cc95b;
+}
+/* anasayfa.css */
+.btn {
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+#update-button {
+    margin-top: 20px;
+    background-color: blue;
+    color:white;
+}

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Results for "{{ query }}"</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='anasayfa.css') }}">
+</head>
+{% extends "index.html" %}
+<body>
+    
+    
+    
+    {% block content1 %}
+    <h1>ARAMA SONUÇLARI</h1>
+        <div class="container">
+            <h1>FASTTEXT ÖNERİLERİ</h1>
+            <ul>
+                {% for filename,content,title,similarity in fasttext_results %}
+                    <li>
+                        <div class="box">
+                            TİTLE : {{  title }}<br> <br>{{ content }} <br><br><br> file-name {{ filename }} <br> Similarity: {{ similarity }}
+                            <button type="submit" class="btn btn-sm btn-danger begen-button">BEĞEN</button>
+                        </div>
+                    </li>
+                    {% endfor %}
+            </ul>
+        </div>
+    {% endblock content1 %}
+    
+    {% block content2 %}
+        <div class="container">
+            <h1>SCRIBERT ÖNERİLERİ</h1>
+            <ul>
+                {% for filename,content,title,similarity in scibert_results %}
+                    <li>
+                        <div class="box">
+                            TİTLE : {{  title }} <br><br> {{ content }} <br><br><br> file-name {{ filename }}- <br> Similarity: {{ similarity }}
+                            <button type="submit" class="btn btn-sm btn-danger begen-button">BEĞEN</button>
+                        </div>
+                    </li>
+                    {% endfor %}
+            </ul>
+        </div>
+    {% endblock content2 %}
+    
+    </body>
+</html>

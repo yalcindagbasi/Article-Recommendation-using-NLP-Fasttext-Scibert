@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}ANA SAYFA{% endblock title %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='anasayfa.css') }}">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+  {% extends "index.html" %}
+  
+  {% block content1 %}
+  <h1>BUNLARI BEĞENEBİLİRSİN</h1>
+  
+  <div class="container">
+      <h1>FASTTEXT ÖNERİLERİ</h1>
+      <ul>
+          {% for filename, content, title, similarity in fasttext_recommendations %}
+              <li>
+                  <div class="box">
+                      TITLE: {{ title }}<br><br>{{ content }}<br><br><br> file-name: {{ filename }}<br> Similarity: {{ similarity }}
+                      <button type="button" class="btn btn-sm btn-danger begen-button" data-article-id="{{ filename|replace('.txt', '') }}">BEĞEN</button>
+                  </div>
+              </li>
+          {% endfor %}
+      </ul>
+      
+  </div>
+  {% endblock content1 %}
+  {% block content2 %}
+  <div class="container">
+      <h1>SCRIBERT ÖNERİLERİ</h1>
+      <ul>
+          {% for filename, content, title, similarity in scibert_recommendations %}
+              <li>
+                  <div class="box">
+                      TITLE: {{ title }} <br><br>{{ content }}<br><br><br> file-name: {{ filename }}<br> Similarity: {{ similarity }}
+                      <button type="button" class="btn btn-sm btn-danger begen-button" data-article-id="{{ filename|replace('.txt', '') }}">BEĞEN</button>
+                  </div>
+              </li>
+          {% endfor %}
+      </ul>
+  </div>
+  
+  <form id="update-form" action="{{ url_for('update_recommendations') }}" method="GET">
+    <button type="submit" class="btn btn-primary">Güncelle</button>
+</form>
+
+  
+  <script>
+  $(document).ready(function(){
+      $(".begen-button").click(function(){
+          var button = $(this);
+          var articleId = button.data("article-id");
+  
+          $.ajax({
+              type: "POST",
+              url: "{{ url_for('like_article') }}",
+              data: { article_id: articleId },
+              success: function(response) {
+                  if(response.success) {
+                      button.prop('disabled', true).css('background-color', 'grey');
+                  } else {
+                      alert("Bir hata oluştu. Lütfen tekrar deneyin.");
+                  }
+              }
+          });
+      });
+  
+      
+  });
+  </script>
+  {% endblock content2 %}
+</body>
+</html>
